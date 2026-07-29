@@ -1,3 +1,5 @@
+#include <stdexcept>
+#include <cstdlib>
 /* Copyright 2017 https://github.com/mandreyel
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -48,17 +50,7 @@ enum class access_mode
  */
 inline size_t page_size()
 {
-    static const size_t page_size = []
-    {
-#ifdef _WIN32
-        SYSTEM_INFO SystemInfo;
-        GetSystemInfo(&SystemInfo);
-        return SystemInfo.dwAllocationGranularity;
-#else
-        return sysconf(_SC_PAGE_SIZE);
-#endif
-    }();
-    return page_size;
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 /**
@@ -68,9 +60,7 @@ inline size_t page_size()
  */
 inline size_t make_offset_page_aligned(size_t offset) noexcept
 {
-    const size_t page_size_ = page_size();
-    // Use integer division to round down to the nearest page alignment.
-    return offset / page_size_ * page_size_;
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 } // namespace mio

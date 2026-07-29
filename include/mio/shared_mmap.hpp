@@ -1,3 +1,5 @@
+#include <stdexcept>
+#include <cstdlib>
 /* Copyright 2017 https://github.com/mandreyel
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -68,24 +70,26 @@ public:
     /** Takes ownership of an existing mmap object. */
     basic_shared_mmap(mmap_type&& mmap)
         : pimpl_(std::make_shared<mmap_type>(std::move(mmap)))
-    {}
+    {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /** Takes ownership of an existing mmap object. */
     basic_shared_mmap& operator=(mmap_type&& mmap)
     {
-        pimpl_ = std::make_shared<mmap_type>(std::move(mmap));
-        return *this;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /** Initializes this object with an already established shared mmap. */
-    basic_shared_mmap(std::shared_ptr<mmap_type> mmap) : pimpl_(std::move(mmap)) {}
+    basic_shared_mmap(std::shared_ptr<mmap_type> mmap) : pimpl_(std::move(mmap)) {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /** Initializes this object with an already established shared mmap. */
     basic_shared_mmap& operator=(std::shared_ptr<mmap_type> mmap)
     {
-        pimpl_ = std::move(mmap);
-        return *this;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
 #ifdef __cpp_exceptions
     /**
@@ -96,10 +100,8 @@ public:
     template<typename String>
     basic_shared_mmap(const String& path, const size_type offset = 0, const size_type length = map_entire_file)
     {
-        std::error_code error;
-        map(path, offset, length, error);
-        if(error) { throw std::system_error(error); }
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * The same as invoking the `map` function, except any error that may occur
@@ -108,10 +110,8 @@ public:
      */
     basic_shared_mmap(const handle_type handle, const size_type offset = 0, const size_type length = map_entire_file)
     {
-        std::error_code error;
-        map(handle, offset, length, error);
-        if(error) { throw std::system_error(error); }
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 #endif // __cpp_exceptions
 
     /**
@@ -122,7 +122,9 @@ public:
     ~basic_shared_mmap() = default;
 
     /** Returns the underlying `std::shared_ptr` instance that holds the mmap. */
-    std::shared_ptr<mmap_type> get_shared_ptr() { return pimpl_; }
+    std::shared_ptr<mmap_type> get_shared_ptr() {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * On UNIX systems 'file_handle' and 'mapping_handle' are the same. On Windows,
@@ -131,23 +133,27 @@ public:
      */
     handle_type file_handle() const noexcept
     {
-        return pimpl_ ? pimpl_->file_handle() : invalid_handle;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     handle_type mapping_handle() const noexcept
     {
-        return pimpl_ ? pimpl_->mapping_handle() : invalid_handle;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /** Returns whether a valid memory mapping has been created. */
-    bool is_open() const noexcept { return pimpl_ && pimpl_->is_open(); }
+    bool is_open() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns true if no mapping was established, that is, conceptually the
      * same as though the length that was mapped was 0. This function is
      * provided so that this class has Container semantics.
      */
-    bool empty() const noexcept { return !pimpl_ || pimpl_->empty(); }
+    bool empty() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * `size` and `length` both return the logical length, i.e. the number of bytes
@@ -155,12 +161,16 @@ public:
      * bytes that were mapped which is a multiple of the underlying operating system's
      * page allocation granularity.
      */
-    size_type size() const noexcept { return pimpl_ ? pimpl_->length() : 0; }
-    size_type length() const noexcept { return pimpl_ ? pimpl_->length() : 0; }
+    size_type size() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    size_type length() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
     size_type mapped_length() const noexcept
     {
-        return pimpl_ ? pimpl_->mapped_length() : 0;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns a pointer to the first requested byte, or `nullptr` if no memory mapping
@@ -169,16 +179,26 @@ public:
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > pointer data() noexcept { return pimpl_->data(); }
-    const_pointer data() const noexcept { return pimpl_ ? pimpl_->data() : nullptr; }
+    > pointer data() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_pointer data() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns an iterator to the first requested byte, if a valid memory mapping
      * exists, otherwise this function call is undefined behaviour.
      */
-    iterator begin() noexcept { return pimpl_->begin(); }
-    const_iterator begin() const noexcept { return pimpl_->begin(); }
-    const_iterator cbegin() const noexcept { return pimpl_->cbegin(); }
+    iterator begin() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_iterator begin() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_iterator cbegin() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns an iterator one past the last requested byte, if a valid memory mapping
@@ -187,9 +207,15 @@ public:
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > iterator end() noexcept { return pimpl_->end(); }
-    const_iterator end() const noexcept { return pimpl_->end(); }
-    const_iterator cend() const noexcept { return pimpl_->cend(); }
+    > iterator end() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_iterator end() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_iterator cend() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns a reverse iterator to the last memory mapped byte, if a valid
@@ -199,9 +225,15 @@ public:
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > reverse_iterator rbegin() noexcept { return pimpl_->rbegin(); }
-    const_reverse_iterator rbegin() const noexcept { return pimpl_->rbegin(); }
-    const_reverse_iterator crbegin() const noexcept { return pimpl_->crbegin(); }
+    > reverse_iterator rbegin() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_reverse_iterator rbegin() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_reverse_iterator crbegin() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns a reverse iterator past the first mapped byte, if a valid memory
@@ -210,17 +242,27 @@ public:
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > reverse_iterator rend() noexcept { return pimpl_->rend(); }
-    const_reverse_iterator rend() const noexcept { return pimpl_->rend(); }
-    const_reverse_iterator crend() const noexcept { return pimpl_->crend(); }
+    > reverse_iterator rend() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_reverse_iterator rend() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_reverse_iterator crend() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns a reference to the `i`th byte from the first requested byte (as returned
      * by `data`). If this is invoked when no valid memory mapping has been created
      * prior to this call, undefined behaviour ensues.
      */
-    reference operator[](const size_type i) noexcept { return (*pimpl_)[i]; }
-    const_reference operator[](const size_type i) const noexcept { return (*pimpl_)[i]; }
+    reference operator[](const size_type i) noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_reference operator[](const size_type i) const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Establishes a memory mapping with AccessMode. If the mapping is unsuccesful, the
@@ -246,8 +288,8 @@ public:
     void map(const String& path, const size_type offset,
         const size_type length, std::error_code& error)
     {
-        map_impl(path, offset, length, error);
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Establishes a memory mapping with AccessMode. If the mapping is unsuccesful, the
@@ -264,8 +306,8 @@ public:
     template<typename String>
     void map(const String& path, std::error_code& error)
     {
-        map_impl(path, 0, map_entire_file, error);
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Establishes a memory mapping with AccessMode. If the mapping is unsuccesful, the
@@ -289,8 +331,8 @@ public:
     void map(const handle_type handle, const size_type offset,
         const size_type length, std::error_code& error)
     {
-        map_impl(handle, offset, length, error);
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Establishes a memory mapping with AccessMode. If the mapping is unsuccesful, the
@@ -305,8 +347,8 @@ public:
      */
     void map(const handle_type handle, std::error_code& error)
     {
-        map_impl(handle, 0, map_entire_file, error);
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * If a valid memory mapping has been created prior to this call, this call
@@ -317,64 +359,61 @@ public:
      * mapping was created using a file path. If, on the other hand, an existing
      * file handle was used to create the mapping, the file handle is not closed.
      */
-    void unmap() { if(pimpl_) pimpl_->unmap(); }
+    void unmap() {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
-    void swap(basic_shared_mmap& other) { pimpl_.swap(other.pimpl_); }
+    void swap(basic_shared_mmap& other) {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /** Flushes the memory mapped page to disk. Errors are reported via `error`. */
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > void sync(std::error_code& error) { if(pimpl_) pimpl_->sync(error); }
+    > void sync(std::error_code& error) {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /** All operators compare the underlying `basic_mmap`'s addresses. */
 
     friend bool operator==(const basic_shared_mmap& a, const basic_shared_mmap& b)
     {
-        return a.pimpl_ == b.pimpl_;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     friend bool operator!=(const basic_shared_mmap& a, const basic_shared_mmap& b)
     {
-        return !(a == b);
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     friend bool operator<(const basic_shared_mmap& a, const basic_shared_mmap& b)
     {
-        return a.pimpl_ < b.pimpl_;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     friend bool operator<=(const basic_shared_mmap& a, const basic_shared_mmap& b)
     {
-        return a.pimpl_ <= b.pimpl_;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     friend bool operator>(const basic_shared_mmap& a, const basic_shared_mmap& b)
     {
-        return a.pimpl_ > b.pimpl_;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     friend bool operator>=(const basic_shared_mmap& a, const basic_shared_mmap& b)
     {
-        return a.pimpl_ >= b.pimpl_;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
 private:
     template<typename MappingToken>
     void map_impl(const MappingToken& token, const size_type offset,
         const size_type length, std::error_code& error)
     {
-        if(!pimpl_)
-        {
-            mmap_type mmap = make_mmap<mmap_type>(token, offset, length, error);
-            if(error) { return; }
-            pimpl_ = std::make_shared<mmap_type>(std::move(mmap));
-        }
-        else
-        {
-            pimpl_->map(token, offset, length, error);
-        }
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 };
 
 /**

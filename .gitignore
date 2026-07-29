@@ -3,3 +3,5 @@ test/**
 !test/example.cpp
 !test/CMakeLists.txt
 build/
+
+compile_commands.json

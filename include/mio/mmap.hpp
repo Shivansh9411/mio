@@ -1,3 +1,5 @@
+#include <stdexcept>
+#include <cstdlib>
 /* Copyright 2017 https://github.com/mandreyel
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -116,10 +118,8 @@ public:
     template<typename String>
     basic_mmap(const String& path, const size_type offset = 0, const size_type length = map_entire_file)
     {
-        std::error_code error;
-        map(path, offset, length, error);
-        if(error) { throw std::system_error(error); }
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * The same as invoking the `map` function, except any error that may occur
@@ -128,10 +128,8 @@ public:
      */
     basic_mmap(const handle_type handle, const size_type offset = 0, const size_type length = map_entire_file)
     {
-        std::error_code error;
-        map(handle, offset, length, error);
-        if(error) { throw std::system_error(error); }
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 #endif // __cpp_exceptions
 
     /**
@@ -154,18 +152,24 @@ public:
      * however, a mapped region of a file gets its own handle, which is returned by
      * 'mapping_handle'.
      */
-    handle_type file_handle() const noexcept { return file_handle_; }
+    handle_type file_handle() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
     handle_type mapping_handle() const noexcept;
 
     /** Returns whether a valid memory mapping has been created. */
-    bool is_open() const noexcept { return file_handle_ != invalid_handle; }
+    bool is_open() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns true if no mapping was established, that is, conceptually the
      * same as though the length that was mapped was 0. This function is
      * provided so that this class has Container semantics.
      */
-    bool empty() const noexcept { return length() == 0; }
+    bool empty() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /** Returns true if a mapping was established. */
     bool is_mapped() const noexcept;
@@ -176,15 +180,21 @@ public:
      * bytes that were mapped which is a multiple of the underlying operating system's
      * page allocation granularity.
      */
-    size_type size() const noexcept { return length(); }
-    size_type length() const noexcept { return length_; }
-    size_type mapped_length() const noexcept { return mapped_length_; }
+    size_type size() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    size_type length() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    size_type mapped_length() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /** Returns the offset relative to the start of the mapping. */
     size_type mapping_offset() const noexcept
     {
-        return mapped_length_ - length_;
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns a pointer to the first requested byte, or `nullptr` if no memory mapping
@@ -193,8 +203,12 @@ public:
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > pointer data() noexcept { return data_; }
-    const_pointer data() const noexcept { return data_; }
+    > pointer data() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_pointer data() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns an iterator to the first requested byte, if a valid memory mapping
@@ -203,9 +217,15 @@ public:
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > iterator begin() noexcept { return data(); }
-    const_iterator begin() const noexcept { return data(); }
-    const_iterator cbegin() const noexcept { return data(); }
+    > iterator begin() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_iterator begin() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_iterator cbegin() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns an iterator one past the last requested byte, if a valid memory mapping
@@ -214,9 +234,15 @@ public:
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > iterator end() noexcept { return data() + length(); }
-    const_iterator end() const noexcept { return data() + length(); }
-    const_iterator cend() const noexcept { return data() + length(); }
+    > iterator end() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_iterator end() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_iterator cend() const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns a reverse iterator to the last memory mapped byte, if a valid
@@ -226,11 +252,17 @@ public:
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > reverse_iterator rbegin() noexcept { return reverse_iterator(end()); }
+    > reverse_iterator rbegin() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
     const_reverse_iterator rbegin() const noexcept
-    { return const_reverse_iterator(end()); }
+    {
+    __builtin_trap() /* STUB: not implemented */;
+}
     const_reverse_iterator crbegin() const noexcept
-    { return const_reverse_iterator(end()); }
+    {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns a reverse iterator past the first mapped byte, if a valid memory
@@ -239,19 +271,29 @@ public:
     template<
         access_mode A = AccessMode,
         typename = typename std::enable_if<A == access_mode::write>::type
-    > reverse_iterator rend() noexcept { return reverse_iterator(begin()); }
+    > reverse_iterator rend() noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
     const_reverse_iterator rend() const noexcept
-    { return const_reverse_iterator(begin()); }
+    {
+    __builtin_trap() /* STUB: not implemented */;
+}
     const_reverse_iterator crend() const noexcept
-    { return const_reverse_iterator(begin()); }
+    {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Returns a reference to the `i`th byte from the first requested byte (as returned
      * by `data`). If this is invoked when no valid memory mapping has been created
      * prior to this call, undefined behaviour ensues.
      */
-    reference operator[](const size_type i) noexcept { return data_[i]; }
-    const_reference operator[](const size_type i) const noexcept { return data_[i]; }
+    reference operator[](const size_type i) noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
+    const_reference operator[](const size_type i) const noexcept {
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Establishes a memory mapping with AccessMode. If the mapping is unsuccesful, the
@@ -292,8 +334,8 @@ public:
     template<typename String>
     void map(const String& path, std::error_code& error)
     {
-        map(path, 0, map_entire_file, error);
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * Establishes a memory mapping with AccessMode. If the mapping is
@@ -330,8 +372,8 @@ public:
      */
     void map(const handle_type handle, std::error_code& error)
     {
-        map(handle, 0, map_entire_file, error);
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * If a valid memory mapping has been created prior to this call, this call
@@ -362,13 +404,13 @@ private:
         typename = typename std::enable_if<A == access_mode::write>::type
     > pointer get_mapping_start() noexcept
     {
-        return !data() ? nullptr : data() - mapping_offset();
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     const_pointer get_mapping_start() const noexcept
     {
-        return !data() ? nullptr : data() - mapping_offset();
-    }
+    __builtin_trap() /* STUB: not implemented */;
+}
 
     /**
      * The destructor syncs changes to disk if `AccessMode` is `write`, but not
@@ -440,9 +482,7 @@ template<
 > MMap make_mmap(const MappingToken& token,
         int64_t offset, int64_t length, std::error_code& error)
 {
-    MMap mmap;
-    mmap.map(token, offset, length, error);
-    return mmap;
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 /**
@@ -456,13 +496,13 @@ template<typename MappingToken>
 mmap_source make_mmap_source(const MappingToken& token, mmap_source::size_type offset,
         mmap_source::size_type length, std::error_code& error)
 {
-    return make_mmap<mmap_source>(token, offset, length, error);
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 template<typename MappingToken>
 mmap_source make_mmap_source(const MappingToken& token, std::error_code& error)
 {
-    return make_mmap_source(token, 0, map_entire_file, error);
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 /**
@@ -476,13 +516,13 @@ template<typename MappingToken>
 mmap_sink make_mmap_sink(const MappingToken& token, mmap_sink::size_type offset,
         mmap_sink::size_type length, std::error_code& error)
 {
-    return make_mmap<mmap_sink>(token, offset, length, error);
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 template<typename MappingToken>
 mmap_sink make_mmap_sink(const MappingToken& token, std::error_code& error)
 {
-    return make_mmap_sink(token, 0, map_entire_file, error);
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 } // namespace mio

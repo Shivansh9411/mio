@@ -1,3 +1,5 @@
+#include <stdexcept>
+#include <cstdlib>
 /* Copyright 2017 https://github.com/mandreyel
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -136,7 +138,7 @@ template<
     typename = typename std::enable_if<!is_c_str_or_c_wstr<String>::value>::type
 > const typename char_type<String>::type* c_str(const String& path)
 {
-    return path.data();
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 template<
@@ -145,7 +147,7 @@ template<
     typename = typename std::enable_if<!is_c_str_or_c_wstr<String>::value>::type
 > bool empty(const String& path)
 {
-    return path.empty();
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 template<
@@ -153,7 +155,7 @@ template<
     typename = typename std::enable_if<is_c_str_or_c_wstr<String>::value>::type
 > const typename char_type<String>::type* c_str(String path)
 {
-    return path;
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 template<
@@ -161,7 +163,7 @@ template<
     typename = typename std::enable_if<is_c_str_or_c_wstr<String>::value>::type
 > bool empty(String path)
 {
-    return !path || (*path == 0);
+    __builtin_trap() /* STUB: not implemented */;
 }
 
 } // namespace detail
